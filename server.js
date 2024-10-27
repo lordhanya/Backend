@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000; // Use PORT from .env
 
 // Middleware
 app.use(cors({
-    origin: "https://symphony-backend.onrender.com", // or wherever your frontend is hosted
+    origin: "http://127.0.0.1:5500", // or wherever your frontend is hosted
     methods: ["GET", "POST", "DELETE"],
     credentials: true
 }));
@@ -26,7 +26,7 @@ const db = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     port: process.env.PORT || 5000,
-    connectTimeout: 50000,
+    connectLimit: 10,
     ssl: {rejectUnauthorized: false}
 });
 
