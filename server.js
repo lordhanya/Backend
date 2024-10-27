@@ -6,14 +6,13 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const moment = require('moment-timezone');
-const BASE_URL = process.env.BASE_URL
 
 const app = express();
 const PORT = process.env.PORT || 5000; // Use PORT from .env
 
 // Middleware
 app.use(cors({
-    origin: "BASE_URL", // or wherever your frontend is hosted
+    origin: "https://symphony-backend.onrender.com", // or wherever your frontend is hosted
     methods: ["GET", "POST", "DELETE"],
     credentials: true
 }));
