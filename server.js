@@ -26,7 +26,6 @@ const db = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     port: process.env.PORT || 5000,
-    connectTimeout: 50000,
     ssl: {rejectUnauthorized: false}
 });
 
@@ -56,6 +55,11 @@ app.post('/api/bookCar', (req, res) => {
         }
         res.json({ message: 'Booking successful!' });
     });
+});
+
+//Test
+app.get('/test', (req, res) => {
+    res.send('Server is working!');
 });
 
 // Endpoint to get all bookings
