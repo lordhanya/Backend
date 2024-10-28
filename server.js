@@ -8,7 +8,7 @@ const cors = require('cors');
 const moment = require('moment-timezone');
 
 const app = express();
-const PORT = process.env.PORT || 5000; // Use PORT from .env
+const PORT = process.env.PORT || 3306; // Use PORT from .env
 
 // Middleware
 app.use(cors({
@@ -25,7 +25,7 @@ const db = mysql.createConnection({
     user: 'root',
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.PORT || 5000,
+    port: process.env.PORT || 3306,
     connectTimeout: 60000,
     ssl: {rejectUnauthorized: false}
 });
