@@ -8,26 +8,21 @@ const cors = require('cors');
 const moment = require('moment-timezone');
 
 const app = express();
-const PORT = process.env.PORT || 3306; // Use PORT from .env
+const PORT = process.env.PORT; // Use PORT from .env
 
 // Middleware
-app.use(cors({
-    origin: "http://127.0.0.1:5500", // or wherever your frontend is hosted
-    methods: ["GET", "POST", "DELETE"],
-    credentials: true
-}));
+app.use(cors());
 
 app.use(bodyParser.json());
 
 // MySQL connection using environment variables
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
-    user: 'root',
+    user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.PORT || 3306,
-    connectTimeout: 60000,
-    ssl: {rejectUnauthorized: false}
+    port: process.env.DB_PORT,
+    // ssl: {rejectUnauthorized: false}
 });
 
 // Connect to MySQL
@@ -86,7 +81,7 @@ app.get('/api/bookings', (req, res) => {
 
 // Endpoint to delete a booking
 app.delete('/api/bookings/:id', (req, res) => {
-    const bookingId = req.params.id;
+    const bookingId = req.params.id; ssl: {rejectUnauthorized: false}
     const query = 'DELETE FROM bookings WHERE id = ?';
     db.query(query, [bookingId], (error, results) => {
         if (error) {
