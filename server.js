@@ -8,7 +8,7 @@ const cors = require('cors');
 const moment = require('moment-timezone');
 
 const app = express();
-const PORT = process.env.PORT || 5000; // Use PORT from .env
+const PORT = process.env.PORT; // Use PORT from .env
 
 // Middleware
 app.use(cors());
